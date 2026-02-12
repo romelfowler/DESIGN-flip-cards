@@ -1,15 +1,20 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+
+#flip-card {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to a new line */
+  justify-content: space-between; /* Distributes space evenly between items */
+  gap: 25px; /* Adds consistent spacing between items (modern approach) */
   }
   .flip-card {
-    background-color: transparent;
-    width: 300px;
-    height: 300px;
-    perspective: 1000px;
-    margin: 0 10px;
+  /* flex-grow: 1; flex-shrink: 0; flex-basis: calc(25% - 10px); */
+  /* The shorthand below accounts for the gap and ensures exactly 4 items per row */
+  flex: 1 0 calc(100% - 10px);
+    /* You can also use width with box-sizing: border-box for simpler calculation */
+  /* box-sizing: border-box; */
+  width: calc(100% - 10px);
+  height: 300px; /* Example height */
+  color: white;
+  text-align: center;
   }
   
   .flip-card-inner {
@@ -36,12 +41,13 @@ body {
   .flip-card-front,
   .flip-card-back {
     position: absolute;
+    border: 1px solid #9a9a9a;
     width: 100%;
     height: 100%;
   }
   
   .flip-card-front {
-    background: linear-gradient(to left, #4364f7, #6fb1fc);
+    background: linear-gradient(to left, #FFF, #FFF);
     color: black;
     z-index: 2;
     display: flex;
@@ -50,18 +56,45 @@ body {
   }
   
   .flip-card-back {
-    background: linear-gradient(to right, #4364f7, #6fb1fc);
-    color: white;
+    background: linear-gradient(to right, #FFF, #FFF);
+    color: black;
     transform: rotateY(180deg);
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  h3 {
-    font-size: 20px;
-    font-family: Verdana, sans-serif;
-    font-weight: bold;
-    color: #fff;
+  .flip-card-content-inner {
+    padding: 0 50px;
   }
-  
+  .flip-card-content-inner h3,
+  .flip-card-content-inner p {
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+  }
+  .flip-card-content-inner h4 {
+    font-family: "Montserrat";
+    font-size: 25px;
+    margin: 10px auto;
+  }
+
+  @media (min-width: 1323px) {
+    .flip-card-content-inner h4 {
+      font-size:60px;
+    }
+    .flip-card {
+      /* flex-grow: 1; 
+      flex-shrink: 0; 
+      flex-basis: calc(25% - 10px); */
+      
+      /* The shorthand below accounts for the gap and ensures exactly 4 items per row */
+      flex: 1 0 calc(20% - 10px);
+    }
+  }
+  @media (min-width:950px) and (max-width: 1322px) {
+    .flip-card {
+      flex: 1 0 calc(45% - 10px);
+    }
+  }
